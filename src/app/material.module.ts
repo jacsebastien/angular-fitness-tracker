@@ -3,7 +3,9 @@ import {
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 } from '@angular/material';
 
 // Custom module for managing all material modules imports
@@ -12,13 +14,17 @@ import {
         MatButtonModule,
         MatIconModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
     exports: [
         MatButtonModule,
         MatIconModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ]
 })
 export class MaterialModule {}
