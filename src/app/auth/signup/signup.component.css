@@ -6,4 +6,9 @@ form {
 
 mat-form-field {
     width: 300px;
+    margin-bottom: 5px;
+}
+
+button {
+    margin-top: 10px;
 }
