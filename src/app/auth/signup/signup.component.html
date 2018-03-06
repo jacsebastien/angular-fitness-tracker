@@ -28,9 +28,15 @@
         </mat-form-field>
         <mat-form-field>
             <!-- bind the input with the datePicker to get selected value -->
-            <input matInput placeholder="Your Birthdate" [matDatepicker]="picker">
+            <input 
+                matInput 
+                placeholder="Your Birthdate" 
+                [matDatepicker]="picker"
+                [max]="maxDate">
             <!-- show a calendar button and tell which picker is shown on click -->
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker-toggle 
+                matSuffix 
+                [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <button type="submit" mat-raised-button color="primary">Submit</button>
