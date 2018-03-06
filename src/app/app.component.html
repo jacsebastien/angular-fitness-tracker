@@ -3,6 +3,19 @@
         <p>I'm the sidenav !</p>
     </mat-sidenav>
     <mat-sidenav-content>
-        <router-outlet></router-outlet>
+        <mat-toolbar color="primary">
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <a routerLink="/">LOGO</a>
+            <ul class="menu-links">
+                <li><a mat-button routerLink="/signup">Signup</a></li>
+                <li><a mat-button routerLink="/login">Login</a></li>
+                <li><a mat-button routerLink="/training">Training</a></li>
+            </ul>
+        </mat-toolbar>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
     </mat-sidenav-content>
 </mat-sidenav-container>
