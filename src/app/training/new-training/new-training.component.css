@@ -1,8 +1,10 @@
-.new-training {
-    
+mat-card {
+    text-align: center;
 }
 
-mat-card {
-    width: 400px;
-    margin: auto;
+@media screen and (min-width: 600px) {
+    mat-card {
+        width: 400px;
+        margin: 30px auto;
+    }
 }
