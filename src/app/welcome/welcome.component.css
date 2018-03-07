@@ -1,0 +1,27 @@
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.8em;
+    text-align: center;    
+}
+
+h2 {
+    text-transform: uppercase;
+}
+
+@media screen and (min-width: 960px) {
+    .welcome {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    section {
+        margin: 0 20px;
+    } 
+}
