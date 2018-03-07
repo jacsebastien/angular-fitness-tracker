@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+    <button class="nav-toggler" mat-icon-button (click)="onToggleSidenav()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <a class="logo" routerLink="/">Fitness Tracker</a>
+    <ul class="menu-links">
+        <li><a mat-button routerLink="/signup">Signup</a></li>
+        <li><a mat-button routerLink="/login">Login</a></li>
+        <li><a mat-button routerLink="/training">Training</a></li>
+        <li><button mat-button>Logout</button></li>
+    </ul>
+</mat-toolbar>

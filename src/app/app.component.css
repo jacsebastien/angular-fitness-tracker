@@ -4,39 +4,6 @@ mat-sidenav-content {
     height: 100%;
 }
 
-li {
-    display: inline-block;
-}
-
-a {
-    color: #FFF;
-    text-decoration: none;
-}
-
 mat-sidenav {
     min-width: 200px;
-}
-
-.nav-caption {
-    display: inline-block;
-    padding-left: 10px;
-}
-
-.menu-links {
-    list-style-type: none;
-    padding: 0;
-    margin-left: auto;
-
-    display: none;
-}
-
-
-@media screen and (min-width: 600px) {
-    .menu-links {
-        display: block;
-    }
-
-    .nav-toggler {
-        display: none;
-    }
 }

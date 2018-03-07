@@ -1,0 +1,27 @@
+li {
+    display: inline-block;
+}
+
+.logo {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.menu-links {
+    list-style-type: none;
+    padding: 0;
+    margin-left: auto;
+
+    display: none;
+}
+
+
+@media screen and (min-width: 600px) {
+    .menu-links {
+        display: block;
+    }
+
+    .nav-toggler {
+        display: none;
+    }
+}
