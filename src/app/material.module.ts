@@ -10,7 +10,8 @@ import {
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule
 } from '@angular/material';
 
 // Custom module for managing all material modules imports
@@ -26,7 +27,8 @@ import {
         MatSidenavModule,
         MatToolbarModule,
         MatListModule,
-        MatTabsModule
+        MatTabsModule,
+        MatCardModule
     ],
     exports: [
         MatButtonModule,
@@ -39,7 +41,8 @@ import {
         MatSidenavModule,
         MatToolbarModule,
         MatListModule,
-        MatTabsModule
+        MatTabsModule,
+        MatCardModule
     ]
 })
 export class MaterialModule {}
