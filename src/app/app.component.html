@@ -1,6 +1,25 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav role="navigation">
-        <p>I'm the sidenav !</p>
+        <mat-nav-list (click)="sidenav.close()">
+            <a mat-list-item routerLink="/signup">
+                <mat-icon>face</mat-icon>
+                <span class="nav-caption">Signup</span>
+            </a>
+            <a mat-list-item routerLink="/login">
+                <mat-icon>input</mat-icon>
+                <span class="nav-caption">Login</span>
+            </a>
+            <a mat-list-item routerLink="/training">
+                <mat-icon>fitness_center</mat-icon>
+                <span class="nav-caption">Training</span>
+            </a>
+            <mat-list-item>
+                <button mat-icon-button>
+                    <mat-icon>eject</mat-icon>
+                    <span class="nav-caption">Logout</span>
+                </button>
+            </mat-list-item>
+        </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar color="primary">
@@ -12,6 +31,7 @@
                 <li><a mat-button routerLink="/signup">Signup</a></li>
                 <li><a mat-button routerLink="/login">Login</a></li>
                 <li><a mat-button routerLink="/training">Training</a></li>
+                <li><button mat-button>Logout</button></li>
             </ul>
         </mat-toolbar>
         <main>

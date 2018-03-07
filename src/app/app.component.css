@@ -4,8 +4,22 @@ mat-sidenav-content {
     height: 100%;
 }
 
+li {
+    display: inline-block;
+}
+
+a {
+    color: #FFF;
+    text-decoration: none;
+}
+
 mat-sidenav {
-    padding: 10px 20px;;
+    min-width: 200px;
+}
+
+.nav-caption {
+    display: inline-block;
+    padding-left: 10px;
 }
 
 .menu-links {
@@ -16,14 +30,6 @@ mat-sidenav {
     display: none;
 }
 
-li {
-    display: inline-block;
-}
-
-a {
-    color: #FFF;
-    text-decoration: none;
-}
 
 @media screen and (min-width: 600px) {
     .menu-links {
