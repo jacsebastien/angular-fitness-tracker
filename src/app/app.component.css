@@ -12,6 +12,8 @@ mat-sidenav {
     list-style-type: none;
     padding: 0;
     margin-left: auto;
+
+    display: none;
 }
 
 li {
@@ -21,4 +23,14 @@ li {
 a {
     color: #FFF;
     text-decoration: none;
+}
+
+@media screen and (min-width: 600px) {
+    .menu-links {
+        display: block;
+    }
+
+    .nav-toggler {
+        display: none;
+    }
 }
