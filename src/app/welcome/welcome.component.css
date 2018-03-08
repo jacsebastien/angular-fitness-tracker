@@ -12,10 +12,6 @@ h2 {
     text-transform: uppercase;
 }
 
-mat-card {
-    margin: 10px 0;
-} 
-
 @media screen and (min-width: 960px) {
     .welcome {
         display: flex;        
