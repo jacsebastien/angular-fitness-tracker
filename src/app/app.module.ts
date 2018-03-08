@@ -17,6 +17,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { StopTrainingDialogComponent } from './dialogs/stop-training-dialog/stop-training-dialog.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     WelcomeComponent,
     HeaderComponent,
     SidenavListComponent,
-    CurrentTrainingComponent
+    CurrentTrainingComponent,
+    StopTrainingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,8 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // tells Angular to be prepared to use those components that are not called in routes or inside templates
+  entryComponents: [StopTrainingDialogComponent]
 })
 export class AppModule { }
