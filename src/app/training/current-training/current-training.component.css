@@ -1,0 +1,9 @@
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.current-training {
+    padding: 30px;
+}
