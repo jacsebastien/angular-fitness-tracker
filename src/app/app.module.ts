@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { StopTrainingDialogComponent } from './dialogs/stop-training-dialog/stop-training-dialog.component';
+import { AuthService } from './auth/auth.service';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { StopTrainingDialogComponent } from './dialogs/stop-training-dialog/stop
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   // tells Angular to be prepared to use those components that are not called in routes or inside templates
   entryComponents: [StopTrainingDialogComponent]
