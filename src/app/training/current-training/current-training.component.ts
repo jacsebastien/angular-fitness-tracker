@@ -22,8 +22,8 @@ export class CurrentTrainingComponent implements OnInit {
     }
 
     startTimer() {
-        // convert the duration to speed in milliseconds with spteps of 1% from 0 to 100%
-        const speed = this.trainingService.getRunningExercise().duration / 100 * 1000;
+        // convert the duration to frequency in milliseconds with spteps of 1% from 0 to 100%
+        const frequency = this.trainingService.getRunningExercise().duration / 100 * 1000;
 
         this.timer = window.setInterval(() => {
             this.progress += 1;
@@ -32,7 +32,7 @@ export class CurrentTrainingComponent implements OnInit {
                 // Stop the timer
                 clearInterval(this.timer);
             }
-        }, speed);
+        }, frequency);
     }
 
     onStopTraining() {
