@@ -18,11 +18,15 @@ export class TrainingService {
     constructor() { }
 
     getExercises(): Exercise[] {
-        return [... this.availableExercises];
+        return [ ...this.availableExercises ];
     }
 
     startExercise(selectedId: string) {
         this.runnungExercise = this.availableExercises.find(ex => ex.id === selectedId);
-        this.exerciseChanged.next({... this.runnungExercise});
+        this.exerciseChanged.next({ ...this.runnungExercise});
+    }
+
+    getRunningExercise(): Exercise {
+        return { ...this.runnungExercise };
     }
 }

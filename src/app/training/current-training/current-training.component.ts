@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { StopTrainingDialogComponent } from '../../dialogs/stop-training-dialog/stop-training-dialog.component';
+import { TrainingService } from '../training.service';
 
 @Component({
     selector: 'app-current-training',
@@ -13,7 +14,7 @@ export class CurrentTrainingComponent implements OnInit {
     progress = 0;
     timer: number;
 
-    constructor(private dialog: MatDialog) { }
+    constructor(private dialog: MatDialog, private trainingService: TrainingService) { }
 
     ngOnInit() {
         // Start a timer and store it inside timer property for future use
@@ -21,6 +22,9 @@ export class CurrentTrainingComponent implements OnInit {
     }
 
     startTimer() {
+        // convert the duration to speed in milliseconds with spteps of 1% from 0 to 100%
+        const speed = this.trainingService.getRunningExercise().duration / 100 * 1000;
+
         this.timer = window.setInterval(() => {
             this.progress += 1;
 
@@ -28,7 +32,7 @@ export class CurrentTrainingComponent implements OnInit {
                 // Stop the timer
                 clearInterval(this.timer);
             }
-        }, 200);
+        }, speed);
     }
 
     onStopTraining() {
