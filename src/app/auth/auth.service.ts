@@ -13,7 +13,7 @@ export class AuthService {
 
     constructor(private router: Router) { }
 
-    registerUser(authData: AuthData) {
+    registerUser(authData: AuthData): void {
         this.user = {
             email: authData.email,
             userId: Math.round(Math.random() * 1000).toString()
@@ -22,7 +22,7 @@ export class AuthService {
         this.afterAuth();
     }
 
-    login(authData: AuthData) {
+    login(authData: AuthData): void {
         this.user = {
             email: authData.email,
             userId: Math.round(Math.random() * 1000).toString()
@@ -31,7 +31,7 @@ export class AuthService {
         this.afterAuth();
     }
 
-    logout() {
+    logout(): void {
         this.user = null;
         this.authChanged.next(false);
         this.router.navigate(['/login']);
