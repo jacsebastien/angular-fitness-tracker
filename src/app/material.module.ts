@@ -15,7 +15,8 @@ import {
     MatSelectModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatSortModule
 } from '@angular/material';
 
 // Custom module for managing all material modules imports
@@ -36,7 +37,8 @@ import {
         MatSelectModule,
         MatProgressSpinnerModule,
         MatDialogModule,
-        MatTableModule
+        MatTableModule,
+        MatSortModule
     ],
     exports: [
         MatButtonModule,
@@ -54,7 +56,8 @@ import {
         MatSelectModule,
         MatProgressSpinnerModule,
         MatDialogModule,
-        MatTableModule
+        MatTableModule,
+        MatSortModule
     ]
 })
 export class MaterialModule {}
