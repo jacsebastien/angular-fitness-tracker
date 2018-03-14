@@ -27,4 +27,8 @@ export class PastTrainingsComponent implements OnInit, AfterViewInit {
         this.dataSource.sort = this.sort;
     }
 
+    doFilter(filterValue: string) {
+        // remove all spaces and put it il lower case
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
 }
