@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { Exercise } from './exercise.model';
 import { Subject } from 'rxjs/Subject';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { Subscription } from 'rxjs/Subscription';
 
 @Injectable()
 export class TrainingService {
     exerciseChanged = new Subject<Exercise>();
     exercisesChanged = new Subject<Exercise[]>();
     finishedExercisesChanged = new Subject<Exercise[]>();
+
+    private fbSubs: Subscription[];
 
     private availableExercises: Exercise[] = [];
     private runnungExercise: Exercise;
@@ -16,7 +19,7 @@ export class TrainingService {
     constructor(private db: AngularFirestore) { }
 
     fetchAvailableExercises() {
-        this.db
+        this.fbSubs.push(this.db
         .collection('availableExercises')
         .snapshotChanges()
         .map(docArray => {
@@ -29,10 +32,14 @@ export class TrainingService {
                 };
             });
         })
-        .subscribe((exercises: Exercise[]) => {
+        .subscribe(
+        (exercises: Exercise[]) => {
             this.availableExercises = exercises;
             this.exercisesChanged.next([ ...exercises ]);
-        });
+        },
+        error => {
+            console.log(error);
+        }));
     }
 
     startExercise(selectedId: string): void {
@@ -76,13 +83,21 @@ export class TrainingService {
 
     fetchFinishedExercises(): void {
         // return [ ...this.finishedExercises ];
-        this.db
+        this.fbSubs.push(this.db
         .collection('finishedExercises')
         .valueChanges()
-        .subscribe((exercises: Exercise[]) => {
+        .subscribe(
+        (exercises: Exercise[]) => {
             // this.finishedExercises = exercises;
             this.finishedExercisesChanged.next(exercises);
-        });
+        },
+        error => {
+            console.log(error);
+        }));
+    }
+
+    cancelSubscriptions() {
+        this.fbSubs.forEach(sub => sub.unsubscribe());
     }
 
     private addDataToDatabase(exercise: Exercise) {
