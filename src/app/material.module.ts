@@ -17,7 +17,8 @@ import {
     MatDialogModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule
 } from '@angular/material';
 
 // Custom module for managing all material modules imports
@@ -40,7 +41,8 @@ import {
         MatDialogModule,
         MatTableModule,
         MatSortModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatSnackBarModule
     ],
     exports: [
         MatButtonModule,
@@ -60,7 +62,8 @@ import {
         MatDialogModule,
         MatTableModule,
         MatSortModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatSnackBarModule
     ]
 })
 export class MaterialModule {}
