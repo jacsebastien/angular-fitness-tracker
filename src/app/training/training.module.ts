@@ -9,6 +9,7 @@ import { NewTrainingComponent } from './new-training/new-training.component';
 import { PastTrainingsComponent } from './past-trainings/past-trainings.component';
 import { CurrentTrainingComponent } from './current-training/current-training.component';
 import { StopTrainingDialogComponent } from '../dialogs/stop-training-dialog/stop-training-dialog.component';
+import { TrainingRoutingModule } from './training-routing.module';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { StopTrainingDialogComponent } from '../dialogs/stop-training-dialog/sto
     ],
     imports: [
         AngularFirestoreModule,
-        SharedModule
+        SharedModule,
+        TrainingRoutingModule
     ],
     // tells Angular to be prepared to use those components that are not called in routes or inside templates
     entryComponents: [StopTrainingDialogComponent]
