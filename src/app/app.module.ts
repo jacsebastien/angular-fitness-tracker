@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule} from 'angularfire2';
-import { AngularFireAuthModule} from 'angularfire2/auth';
 
 import { environment } from '../environments/environment';
 
@@ -38,7 +37,6 @@ import { UiService } from './shared/ui.service';
     AuthModule,
     TrainingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
   ],
   providers: [AuthService, TrainingService, UiService],
   bootstrap: [AppComponent]

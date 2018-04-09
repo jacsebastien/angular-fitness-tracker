@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { MaterialModule } from '../material.module';
 
@@ -16,7 +17,8 @@ import { LoginComponent } from './login/login.component';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        MaterialModule
+        MaterialModule,
+        AngularFireAuthModule
     ]
 })
 export class AuthModule { }
