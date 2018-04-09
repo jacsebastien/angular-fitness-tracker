@@ -27,6 +27,7 @@ import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
 
 import { environment } from '../environments/environment';
+import { UiService } from './shared/ui.service';
 
 
 @NgModule({
@@ -55,7 +56,7 @@ import { environment } from '../environments/environment';
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [AuthService, TrainingService],
+  providers: [AuthService, TrainingService, UiService],
   bootstrap: [AppComponent],
   // tells Angular to be prepared to use those components that are not called in routes or inside templates
   entryComponents: [StopTrainingDialogComponent]

@@ -2,25 +2,27 @@
     <h1>Login</h1>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field>
-            <input 
-                type="email" 
-                matInput 
+            <input
+                type="email"
+                matInput
                 placeholder="Your Email"
                 formControlName="email">
             <mat-error>Invalid or missing email.</mat-error>
         </mat-form-field>
         <mat-form-field >
-            <input 
-                type="password"  
-                matInput 
+            <input
+                type="password"
+                matInput
                 placeholder="Your Password"
-                formControlName="password">       
-            <mat-error>Missing password.</mat-error>               
+                formControlName="password">
+            <mat-error>Missing password.</mat-error>
         </mat-form-field>
-        <button 
+        <button
+            *ngIf="!isLoading"
             type="submit"
-            mat-raised-button 
+            mat-raised-button
             color="primary"
             [disabled]="loginForm.invalid">Submit</button>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
     </form>
 </section>

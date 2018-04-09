@@ -1,12 +1,12 @@
 <section class="signup-form">
-    <h1>Signup</h1>    
+    <h1>Signup</h1>
     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
         <mat-form-field>
-            <input 
-                type="email" 
-                matInput 
-                placeholder="Your Email" 
-                ngModel 
+            <input
+                type="email"
+                matInput
+                placeholder="Your Email"
+                ngModel
                 name="email"
                 email
                 required
@@ -15,43 +15,45 @@
             <mat-error *ngIf="!emailInput.hasError('required')">Email is invalid.</mat-error>
         </mat-form-field>
         <mat-form-field hintLabel="Should be at least 6 characters long">
-            <input 
-                type="password" 
-                matInput 
-                placeholder="Your Password" 
-                ngModel 
+            <input
+                type="password"
+                matInput
+                placeholder="Your Password"
+                ngModel
                 name="password"
                 required
                 minlength="6"
                 #pwInput="ngModel">
             <mat-hint align="end">{{ pwInput.value?.length }} /6</mat-hint>
-            <mat-error>Has to be be at least 6 characters long.</mat-error>            
+            <mat-error>Has to be be at least 6 characters long.</mat-error>
         </mat-form-field>
         <mat-form-field>
             <!-- bind the input with the datePicker to get selected value -->
-            <input 
-                matInput 
-                placeholder="Your Birthdate" 
+            <input
+                matInput
+                placeholder="Your Birthdate"
                 [matDatepicker]="picker"
                 [max]="maxDate"
                 ngModel
                 name="birthdate"
                 required>
             <!-- show a calendar button and tell which picker is shown on click -->
-            <mat-datepicker-toggle 
-                matSuffix 
+            <mat-datepicker-toggle
+                matSuffix
                 [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <mat-checkbox 
-            ngModel 
-            name="agree" 
+        <mat-checkbox
+            ngModel
+            name="agree"
             required
             color="primary">Agree to Terms and Conditions.</mat-checkbox>
-        <button 
+        <button
+            *ngIf="!isLoading"
             type="submit"
-            mat-raised-button 
+            mat-raised-button
             color="primary"
             [disabled]="f.invalid">Submit</button>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
     </form>
 </section>
