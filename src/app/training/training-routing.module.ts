@@ -6,7 +6,8 @@ import { AuthGuard } from "../auth/auth.guard";
 
 const routes: Routes = [
         // protect training route with custom auth guard
-        { path: 'training', component: TrainingComponent, canActivate: [AuthGuard]}
+        // use root path because 'training' path is defined in app-routing
+        { path: '', component: TrainingComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
