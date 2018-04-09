@@ -6,8 +6,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule} from 'angularfire2/auth';
 
+import { environment } from '../environments/environment';
+
 import { MaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
+import { TrainingModule } from './training/training.module';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -16,12 +20,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
-
-import { environment } from '../environments/environment';
 import { UiService } from './shared/ui.service';
-
-import { AuthModule } from './auth/auth.module';
-import { TrainingModule } from './training/training.module';
 
 
 @NgModule({
@@ -36,10 +35,10 @@ import { TrainingModule } from './training/training.module';
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
     AuthModule,
-    TrainingModule
+    TrainingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   providers: [AuthService, TrainingService, UiService],
   bootstrap: [AppComponent]
