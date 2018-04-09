@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class NewTrainingComponent implements OnInit, OnDestroy {
     exercises: Exercise[];
     exerciseSubscription: Subscription;
+    isLoading = true;
 
     constructor(private trainingService: TrainingService) { }
 
@@ -21,6 +22,7 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
         this.exerciseSubscription = this.trainingService.exercisesChanged
         .subscribe(exercises => {
             this.exercises = exercises;
+            this.isLoading = false;
         });
         this.trainingService.fetchAvailableExercises();
     }
