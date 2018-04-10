@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule} from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
+import { StoreModule } from '@ngrx/store';
+
 import { environment } from '../environments/environment';
 
 import { MaterialModule } from './material.module';
@@ -20,6 +22,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
 import { UiService } from './shared/ui.service';
+import { appReducer } from './app.reducer';
 
 
 @NgModule({
@@ -37,7 +40,9 @@ import { UiService } from './shared/ui.service';
     AuthModule,
     // don't add TrainingModule because it's loaded lazily
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    // tells Angular to use appReducer with "ui" keyword
+    StoreModule.forRoot({ui: appReducer})
   ],
   providers: [AuthService, TrainingService, UiService],
   bootstrap: [AppComponent]
