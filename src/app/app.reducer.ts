@@ -1,23 +1,18 @@
+import * as fromUi from './shared/ui.reducer';
+import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
+
+// create an interface with "ui" property type of fromUi.State
 export interface State {
-    isLoading: boolean;
+    ui: fromUi.State;
 }
 
-const initialState: State = {
-    isLoading: false
+// export all reducers with they type
+export const reducers: ActionReducerMap<State> = {
+    // uiReducer return the state with the type State ({isLoading: boolean})
+    ui: fromUi.uiReducer
 };
 
-// give state initialState default value cause the first time the app launch we have no state
-export function appReducer(state = initialState, action) {
-    switch(action.type) {
-        case 'START_LOADING' :
-            return {
-                isLoading: true
-            };
-        case 'STOP_LOADING' :
-            return {
-                isLoading: false
-            };
-        default :
-            return state;
-    }
-}
+// get quick access to the ui state thx to ngrx
+export const getUiState = createFeatureSelector<fromUi.State>('ui');
+// get quick access to isLoading state using getIsLoading with ui state from ui reducer
+export const getIsLoading = createSelector(getUiState, fromUi.getIsLoading);
