@@ -22,7 +22,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
 import { UiService } from './shared/ui.service';
-import { appReducer } from './app.reducer';
+import { reducers } from './app.reducer';
 
 
 @NgModule({
@@ -39,10 +39,11 @@ import { appReducer } from './app.reducer';
     SharedModule,
     AuthModule,
     // don't add TrainingModule because it's loaded lazily
+    // TrainingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    // tells Angular to use appReducer with "ui" keyword
-    StoreModule.forRoot({ui: appReducer})
+    // tells Angular to use reducers created in app.reducer
+    StoreModule.forRoot(reducers)
   ],
   providers: [AuthService, TrainingService, UiService],
   bootstrap: [AppComponent]

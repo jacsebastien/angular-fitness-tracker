@@ -13,6 +13,9 @@ export const reducers: ActionReducerMap<State> = {
 };
 
 // get quick access to the ui state thx to ngrx
+// return an object
 export const getUiState = createFeatureSelector<fromUi.State>('ui');
+
 // get quick access to isLoading state using getIsLoading with ui state from ui reducer
+// return a boolean
 export const getIsLoading = createSelector(getUiState, fromUi.getIsLoading);
