@@ -7,8 +7,8 @@ import { MatSnackBar } from '@angular/material';
 import { AuthData } from './auth-data.model';
 import { TrainingService } from '../training/training.service';
 import { UiService } from '../shared/ui.service';
-import { Store } from '@ngrx/store';
 
+import { Store } from '@ngrx/store';
 // import all from "app.reducer" in property "fromApp"
 // use first letter lower case for reducers
 import * as fromRoot from '../app.reducer';
@@ -30,47 +30,33 @@ export class AuthService {
     ) { }
 
     registerUser(authData: AuthData): void {
-        // Use a global service to manage loading state
-        // this.uiService.loadingStateChanged.next(true);
-
         // use central store to manage loading state with redux
-        this.store.dispatch(new UI.StartLoading);
+        this.store.dispatch(new UI.StartLoading());
         this.afAuth.auth
         .createUserAndRetrieveDataWithEmailAndPassword(authData.email, authData.password)
         .then(result => {
-            // this.uiService.loadingStateChanged.next(false);
-            this.store.dispatch(new UI.StopLoading);
+            this.store.dispatch(new UI.StopLoading());
             console.log(result);
             this.afterAuth();
         })
         .catch(error => {
-            // this.uiService.loadingStateChanged.next(false);
-            this.store.dispatch(new UI.StopLoading);
+            this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackbar(error.message, null, 3000);
-            // this.snackBar.open(error.message, null, {
-            //     duration: 3000
-            // });
         });
     }
 
     login(authData: AuthData): void {
-        // this.uiService.loadingStateChanged.next(true);
-        this.store.dispatch(new UI.StartLoading);
+        this.store.dispatch(new UI.StartLoading());
         this.afAuth.auth
         .signInWithEmailAndPassword(authData.email, authData.password)
         .then(result => {
-            // this.uiService.loadingStateChanged.next(false);
-            this.store.dispatch(new UI.StopLoading);
+            this.store.dispatch(new UI.StopLoading());
             console.log(result);
             this.afterAuth();
         })
         .catch(error => {
-            // this.uiService.loadingStateChanged.next(false);
-            this.store.dispatch(new UI.StopLoading);
+            this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackbar(error.message, null, 3000);
-            // this.snackBar.open(error.message, null, {
-            //     duration: 3000
-            // });
         });
 
     }

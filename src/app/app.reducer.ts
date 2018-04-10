@@ -1,12 +1,12 @@
 import * as fromUi from './shared/ui.reducer';
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
-// create an interface with "ui" property type of fromUi.State
+// create a State interface with "ui" property type of fromUi.State
 export interface State {
     ui: fromUi.State;
 }
 
-// export all reducers with they type
+// export all reducers
 export const reducers: ActionReducerMap<State> = {
     // uiReducer return the state with the type State ({isLoading: boolean})
     ui: fromUi.uiReducer
