@@ -24,7 +24,7 @@ export class TrainingService {
     constructor(
         private db: AngularFirestore,
         private uiService: UiService,
-        private store: Store<{ui: fromRoot.State}>
+        private store: Store<fromRoot.State>
     ) { }
 
     fetchAvailableExercises() {
