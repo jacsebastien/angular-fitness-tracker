@@ -26,6 +26,17 @@ export class AuthService {
         private store: Store<fromRoot.State>
     ) { }
 
+    initAuthListener() {
+        this.afAuth.authState
+        .subscribe(user => {
+            if(user) {
+                this.store.dispatch(new Auth.SetAuthenticated());
+            } else {
+                this.store.dispatch(new Auth.SetUnauthenticated());
+            }
+        });
+    }
+
     registerUser(authData: AuthData): void {
         // use central store to manage loading state with redux
         this.store.dispatch(new UI.StartLoading());
