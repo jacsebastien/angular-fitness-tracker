@@ -8,7 +8,9 @@ export interface State {
     auth: fromAUth.State;
 }
 
-// export all reducers
+/*  export all reducers
+ *  can't add training here because it's loading lasily so extend this in trainig.reducer when loaded
+ */
 export const reducers: ActionReducerMap<State> = {
     // uiReducer return the state with the type State ({isLoading: boolean})
     ui: fromUi.uiReducer,
