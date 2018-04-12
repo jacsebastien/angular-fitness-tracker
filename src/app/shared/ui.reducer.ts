@@ -25,4 +25,5 @@ export function uiReducer(state = initialState, action: UIActions) {
     }
 }
 
+// used to quickly access isLoading value in global app.reducer
 export const getIsLoading = (state: State) => state.isLoading;
