@@ -48,8 +48,6 @@ export class TrainingService {
         .subscribe(
         (exercises: Exercise[]) => {
             this.store.dispatch(new UI.StopLoading());
-            // this.availableExercises = exercises;
-            // this.exercisesChanged.next([ ...exercises ]);
             this.store.dispatch(new Training.SetAvailableTrainings(exercises));
         },
         error => {
@@ -65,27 +63,21 @@ export class TrainingService {
     }
 
     startExercise(selectedId: string): void {
-        // this.runnungExercise = this.availableExercises.find(ex => ex.id === selectedId);
-        // this.exerciseChanged.next({ ...this.runnungExercise});
         this.store.dispatch(new Training.StartTraining(selectedId));
     }
 
     completeExercise(): void {
         // Store completed exercise in the array and add date and status
-        // this.finishedExercises.push({
         this.addDataToDatabase({
             ...this.runnungExercise,
             date: new Date(),
             state: 'completed'
         });
-        // this.runnungExercise = null;
-        // this.exerciseChanged.next(null);
         this.store.dispatch(new Training.StopTraining());
     }
 
     cancelExercise(progress: number): void {
         // Store cancelled exercise in the array and set calories and duration calculated from progress %
-        // this.finishedExercises.push({
         this.addDataToDatabase({
             ...this.runnungExercise,
             duration: this.runnungExercise.duration * (progress / 100),
@@ -93,8 +85,6 @@ export class TrainingService {
             date: new Date(),
             state: 'cancelled'
         });
-        // this.runnungExercise = null;
-        // this.exerciseChanged.next(null);
         this.store.dispatch(new Training.StopTraining());
     }
 
@@ -103,14 +93,11 @@ export class TrainingService {
     }
 
     fetchFinishedExercises(): void {
-        // return [ ...this.finishedExercises ];
         this.fbSubs.push(this.db
         .collection('finishedExercises')
         .valueChanges()
         .subscribe(
         (exercises: Exercise[]) => {
-            // this.finishedExercises = exercises;
-            // this.finishedExercisesChanged.next(exercises);
             this.store.dispatch(new Training.SetFinishedTrainings(exercises));
         },
         error => {
