@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Exercise } from './exercise.model';
-import { Subject } from 'rxjs/Subject';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
+import { take } from 'rxjs/operators';
+
 import { UiService } from '../shared/ui.service';
 
 import { Store } from '@ngrx/store';
@@ -19,7 +21,6 @@ export class TrainingService {
     private fbSubs: Subscription[] = [];
 
     private availableExercises: Exercise[] = [];
-    private runnungExercise: Exercise;
     // private finishedExercises: Exercise[] = [];
 
     constructor(
@@ -67,29 +68,33 @@ export class TrainingService {
     }
 
     completeExercise(): void {
-        // Store completed exercise in the array and add date and status
-        this.addDataToDatabase({
-            ...this.runnungExercise,
-            date: new Date(),
-            state: 'completed'
+        // No need to be informed each time active training changed, just need it once
+        this.store.select(fromTraining.getActiveTraining).pipe(take(1))
+        .subscribe(runnungExercise => {
+            // Store completed exercise in the array and add date and status
+            this.addDataToDatabase({
+                ...runnungExercise,
+                date: new Date(),
+                state: 'completed'
+            });
+            this.store.dispatch(new Training.StopTraining());
         });
-        this.store.dispatch(new Training.StopTraining());
     }
 
     cancelExercise(progress: number): void {
-        // Store cancelled exercise in the array and set calories and duration calculated from progress %
-        this.addDataToDatabase({
-            ...this.runnungExercise,
-            duration: this.runnungExercise.duration * (progress / 100),
-            calories: this.runnungExercise.calories * (progress / 100),
-            date: new Date(),
-            state: 'cancelled'
+        // No need to be informed each time active training changed, just need it once
+        this.store.select(fromTraining.getActiveTraining).pipe(take(1))
+        .subscribe(runnungExercise => {
+            // Store cancelled exercise in the array and set calories and duration calculated from progress %
+            this.addDataToDatabase({
+                ...runnungExercise,
+                duration: runnungExercise.duration * (progress / 100),
+                calories: runnungExercise.calories * (progress / 100),
+                date: new Date(),
+                state: 'cancelled'
+            });
+            this.store.dispatch(new Training.StopTraining());
         });
-        this.store.dispatch(new Training.StopTraining());
-    }
-
-    getRunningExercise(): Exercise {
-        return { ...this.runnungExercise };
     }
 
     fetchFinishedExercises(): void {

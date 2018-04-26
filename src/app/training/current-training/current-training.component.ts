@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
 
 import { StopTrainingDialogComponent } from '../../dialogs/stop-training-dialog/stop-training-dialog.component';
 import { TrainingService } from '../training.service';
+import * as fromTraining from '../training.reducer';
 
 @Component({
     selector: 'app-current-training',
@@ -13,7 +16,11 @@ export class CurrentTrainingComponent implements OnInit {
     progress = 0;
     timer: number;
 
-    constructor(private dialog: MatDialog, private trainingService: TrainingService) { }
+    constructor(
+        private dialog: MatDialog,
+        private trainingService: TrainingService,
+        private store: Store<fromTraining.State>
+    ) { }
 
     ngOnInit() {
         // Start a timer and store it inside timer property for future use
@@ -21,19 +28,23 @@ export class CurrentTrainingComponent implements OnInit {
     }
 
     startTimer() {
-        // convert the duration to frequency in milliseconds with spteps of 1% from 0 to 100%
-        const frequency = this.trainingService.getRunningExercise().duration / 100 * 1000;
+        // No need to be informed each time active training changed, just need it once
+        this.store.select(fromTraining.getActiveTraining).pipe(take(1))
+        .subscribe(exercise => {
+            // convert the duration to frequency in milliseconds with spteps of 1% from 0 to 100%
+            const frequency = exercise.duration / 100 * 1000;
 
-        this.timer = window.setInterval(() => {
-            this.progress += 1;
+            this.timer = window.setInterval(() => {
+                this.progress += 1;
 
-            if (this.progress >= 100) {
-                // call service function to store completed exercise
-                this.trainingService.completeExercise();
-                // Stop the timer
-                clearInterval(this.timer);
-            }
-        }, frequency);
+                if (this.progress >= 100) {
+                    // call service function to store completed exercise
+                    this.trainingService.completeExercise();
+                    // Stop the timer
+                    clearInterval(this.timer);
+                }
+            }, frequency);
+        });
     }
 
     onStopTraining() {
