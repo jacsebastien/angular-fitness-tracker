@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Exercise } from './exercise.model';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import { take } from 'rxjs/operators';
 
@@ -14,14 +13,7 @@ import * as Training from './training.actions';
 
 @Injectable()
 export class TrainingService {
-    exerciseChanged = new Subject<Exercise>();
-    exercisesChanged = new Subject<Exercise[]>();
-    finishedExercisesChanged = new Subject<Exercise[]>();
-
     private fbSubs: Subscription[] = [];
-
-    private availableExercises: Exercise[] = [];
-    // private finishedExercises: Exercise[] = [];
 
     constructor(
         private db: AngularFirestore,
@@ -58,8 +50,6 @@ export class TrainingService {
                 null,
                 3000
             );
-            this.exercisesChanged.next(null);
-            // console.log(error);
         }));
     }
 
