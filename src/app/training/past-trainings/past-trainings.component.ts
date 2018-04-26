@@ -1,17 +1,17 @@
-import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { Store } from '@ngrx/store';
+
 import { Exercise } from '../exercise.model';
 import { TrainingService } from '../training.service';
-import { Subscription } from 'rxjs/Subscription';
+import * as fromTraining from '../training.reducer';
 
 @Component({
     selector: 'app-past-trainings',
     templateUrl: './past-trainings.component.html',
     styleUrls: ['./past-trainings.component.css']
 })
-export class PastTrainingsComponent implements OnInit, AfterViewInit, OnDestroy {
-    private exChangedSubscription: Subscription;
-
+export class PastTrainingsComponent implements OnInit, AfterViewInit {
     // Fetch MatSort directive from the template and store it in "sort" property type of MatSort
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -19,11 +19,15 @@ export class PastTrainingsComponent implements OnInit, AfterViewInit, OnDestroy 
     // No need to tell that it's an arrau of Exercise, MatTableDataSource automatically assume this
     dataSource = new MatTableDataSource<Exercise>();
 
-    constructor(private trainingService: TrainingService) { }
+    constructor(
+        private trainingService: TrainingService,
+        private store: Store<fromTraining.State>
+    ) { }
 
     ngOnInit() {
         // this.dataSource.data = this.trainingService.fetchFinishedExercises();
-        this.exChangedSubscription = this.trainingService.finishedExercisesChanged.subscribe((exercises: Exercise[]) => {
+        this.store.select(fromTraining.getFinishedExercises)
+        .subscribe((exercises: Exercise[]) => {
             this.dataSource.data = exercises;
         });
 
@@ -40,11 +44,5 @@ export class PastTrainingsComponent implements OnInit, AfterViewInit, OnDestroy 
     doFilter(filterValue: string) {
         // remove all spaces and put it il lower case
         this.dataSource.filter = filterValue.trim().toLowerCase();
-    }
-
-    ngOnDestroy() {
-        if(this.exChangedSubscription) {
-            this.exChangedSubscription.unsubscribe();
-        }
     }
 }
